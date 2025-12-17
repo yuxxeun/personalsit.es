@@ -1,8 +1,8 @@
 ---
-title: 'jessdriscoll'
-url: 'http://jessdriscoll.com'
+title: 'jess is typing'
+url: 'https://jessdriscoll.com'
 tags: ['writer', 'blogger', 'publisher', 'artist']
-updatesFeed: 'http://jessdriscoll.com/blog/atom.xml'
+updatesFeed: 'https://jessdriscoll.com/rss/'
 nsfw: false
 rss: true
 ---

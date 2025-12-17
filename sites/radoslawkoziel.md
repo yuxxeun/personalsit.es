@@ -1,8 +1,8 @@
 ---
-title: 'radoslawkoziel.pl'
-url: 'https://radoslawkoziel.pl'
+title: 'Radek Kozieł'
+url: 'https://rkoziel.com'
 tags: ['software designer', 'software developer']
-updatesFeed: 'https://radoslawkoziel.pl/thoughts/index.xml'
+updatesFeed: 'https://rkoziel.com/thoughts/index.xml'
 nsfw: false
 rss: true
 ---

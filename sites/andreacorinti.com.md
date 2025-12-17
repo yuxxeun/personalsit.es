@@ -1,7 +1,8 @@
 ---
-title: 'andreacorinti.com'
-url: 'https://andreacorinti.com'
+title: 'Andrea Corinti'
+url: 'https://www.andreacorinti.com'
 tags: ['developer', 'italian', 'blogger', 'gamer']
+updatesFeed: 'https://www.andreacorinti.com/feed.xml'
 nsfw: false
 rss: true
 ---
