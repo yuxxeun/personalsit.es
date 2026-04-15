@@ -1,0 +1,48 @@
+name: Capture screenshotties
+on:
+  pull_request_target:
+    types: [assigned, opened, synchronize, reopened]
+    paths:
+      - 'sites/*.md'
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout base repo
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Fetch PR commit history
+        run: git fetch origin pull/${{ github.event.pull_request.number }}/head:pr_head
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Securely overlay untrusted PR markdown files
+        run: git checkout pr_head -- sites/
+
+      - name: Get changed markdown files
+        id: changed-files
+        uses: tj-actions/changed-files@v47
+        with:
+          files: |
+            sites/*.md
+
+      - name: Capture screenshots
+        if: steps.changed-files.outputs.any_changed == 'true'
+        env:
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          S3_USER_ACCESS_KEY: ${{ secrets.S3_USER_ACCESS_KEY }}
+          S3_USER_ACCESS_KEY_SECRET: ${{ secrets.S3_USER_ACCESS_KEY_SECRET }}
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          S3_REGION: ${{ secrets.S3_REGION }}
+          CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+        run: node screenshot-new-site.js

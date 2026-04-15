@@ -4,7 +4,7 @@ const rssPlugin = require('@11ty/eleventy-plugin-rss');
 // const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 
 const shuffle = require('./filters/shuffle.js');
-const htmlmin = require('html-minifier');
+const { minify } = require('html-minifier-next');
 
 require('dotenv').config();
 
@@ -35,9 +35,9 @@ module.exports = (eleventyConfig) => {
   });
 
   // Minify
-  eleventyConfig.addTransform('htmlmin', function (content, outputPath) {
+  eleventyConfig.addTransform('minify', function (content, outputPath) {
     if (outputPath.indexOf('.html') > -1) {
-      let minified = htmlmin.minify(content, {
+      let minified = minify(content, {
         useShortDoctype: true,
         removeComments: true,
         collapseWhitespace: true,
@@ -50,13 +50,12 @@ module.exports = (eleventyConfig) => {
 
   // Shortcodes
   eleventyConfig.addShortcode(
-    'cloudinaryUrl',
-    (path, transforms) =>
-      `https://res.cloudinary.com/${
-        process.env.CLOUDINARY_CLOUD_NAME
-      }/image/upload/${transforms}/${filenamifyUrl(path, {
+    'cdnUrl',
+    (path) =>
+      // Thanks to Andy Bell for this one
+      `https://personalsites.b-cdn.net/${filenamifyUrl(path, {
         replacement: '',
-      })}.png`
+      })}.png?width=600`
   );
 
   // Return config settings

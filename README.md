@@ -16,20 +16,23 @@ Want to add your site? We'd love your contribution. Go ahead and follow these st
 
    ```yaml
    ---
-   title: "Andy Bell"
-   url: "https://bell.bz"
-   tags: ["web designer", "writer"]
-   updatesFeed: "https://bell.bz/feed.xml"
-   nsfw: false
-   rss: true
+   title: 'Andy Bell'
+   url: 'https://bell.bz'
+   tags: ['web designer', 'writer']
+   rss: 'https://bell.bz/feed.xml'
    ---
    ```
+
+(The only required fields are `title` and `url`. `tags` are pretty free-form, and `rss` is usually for RSS style content!)
 
 4. 🖥 Create a pull request, and after your site has been approved by an admin, it'll appear on [personalsit.es](https://personalsit.es)!
 
 > [!NOTE]
-> I close AI PRs.
+> I don't really fw LLMs, and I close glaringly AI-generated PRs. No hard feelings, it's just a repo about personal websites!
 
+## 🖼️ Updating your site's screenshot
+
+Right now, this is a fairly manual process. Feel free to [open an issue](https://github.com/xdesro/personalsit.es/issues/new) with a request to update your screenshot and we'll be happy to sort that out!
 
 ## 📄 Contributions
 
